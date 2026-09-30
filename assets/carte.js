@@ -54,10 +54,6 @@
 
   // ---- Le formulaire
   const form = $("formulaire")
-  let nombre = 1
-  const affiche = () => ($("nombre").textContent = nombre)
-  $("moins").addEventListener("click", () => { nombre = Math.max(1, nombre - 1); affiche() })
-  $("plus").addEventListener("click", () => { nombre = Math.min(8, nombre + 1); affiche() })
   form.addEventListener("change", (e) => {
     if (e.target.name === "presence") $("si-oui").hidden = e.target.value !== "oui"
   })
@@ -86,16 +82,15 @@
 
     $("merci-titre").textContent = "Merci " + prenom + ", votre réponse est envoyée."
     $("merci-texte").textContent = vient
-      ? "Nous vous attendons, " + (nombre > 1 ? "à " + nombre + " personnes" : "avec plaisir") + "."
+      ? "Nous vous attendons avec plaisir."
       : "Vous nous manquerez. Merci de nous avoir prévenus."
 
-    $("mail-objet").textContent = "Réponse de " + nom + " : " + (vient ? "présent, " + nombre + (nombre > 1 ? " personnes" : " personne") : "absent")
+    $("mail-objet").textContent = "Réponse de " + nom + " : " + (vient ? "présent" : "absent")
     const dl = $("mail-corps")
     dl.textContent = ""
     ligne(dl, "Événement", d.evenement)
     ligne(dl, "Invité", nom)
     ligne(dl, "Réponse", vient ? d.oui : d.non)
-    if (vient) ligne(dl, "Personnes", String(nombre))
     // les questions d'exemple : chaque réponse donnée devient une ligne de l'e-mail
     if (vient) form.querySelectorAll("[data-q]").forEach((q) => {
       const valeur = (f.get(q.dataset.nom) || "").trim()
