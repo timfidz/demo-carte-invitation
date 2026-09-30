@@ -37,13 +37,20 @@
     $("compte").hidden = false
   }
 
-  // ---- L'agenda : le bouton déplie trois choix (Google, Outlook, fichier .ics) ; sans script, ils restent affichés
+  // ---- L'agenda : le bouton ouvre une liste par-dessus la page (Google, Outlook, fichier .ics) ; sans script, les trois choix restent affichés
   const menu = $("agenda-menu")
-  menu.hidden = true
-  $("agenda").addEventListener("click", () => {
-    menu.hidden = !menu.hidden
-    $("agenda").setAttribute("aria-expanded", String(!menu.hidden))
+  const bouton = $("agenda")
+  const bascule = (ouvert) => {
+    menu.hidden = !ouvert
+    bouton.setAttribute("aria-expanded", String(ouvert))
+  }
+  bascule(false)
+  bouton.addEventListener("click", () => bascule(menu.hidden))
+  document.addEventListener("click", (e) => { if (!e.target.closest(".agenda-choix")) bascule(false) })
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !menu.hidden) { bascule(false); bouton.focus() }
   })
+  menu.addEventListener("click", (e) => { if (e.target.closest("a")) bascule(false) })
 
   // ---- Le formulaire
   const form = $("formulaire")

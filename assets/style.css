@@ -74,6 +74,13 @@ h2 { font-size: 1.7rem; }
 .agenda-menu { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .agenda-menu a { display: inline-block; padding: 9px 16px; border: 1px solid var(--filet); border-radius: 999px; background: #fff; color: var(--encre); font-size: .92rem; font-weight: 500; text-decoration: none; }
 .agenda-menu a:hover { border-color: var(--accent); }
+/* Avec le script : une liste qui s'ouvre par-dessus la page, sans pousser ce qui suit */
+.js .agenda-choix { position: relative; }
+.js #agenda::after { content: ""; width: 8px; height: 8px; margin: -4px 0 0 12px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform .2s; }
+.js #agenda[aria-expanded="true"]::after { transform: rotate(225deg); margin-top: 4px; }
+.js .agenda-menu { position: absolute; z-index: 10; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: max-content; min-width: 100%; display: grid; gap: 2px; padding: 6px; border: 1px solid var(--filet); border-radius: 14px; background: #fff; box-shadow: 0 14px 34px rgba(0, 0, 0, .16); text-align: left; }
+.js .agenda-menu a { display: block; padding: 11px 16px; border: 0; border-radius: 9px; font-size: .97rem; }
+.js .agenda-menu a:hover, .js .agenda-menu a:focus-visible { background: color-mix(in srgb, var(--accent) 12%, #fff); }
 .compte { margin: 0; font: 500 1.15rem "Fraunces", Georgia, serif; color: var(--encre); }
 
 /* ---------- Réponse */
@@ -172,6 +179,7 @@ form .bouton { justify-self: center; margin-top: 4px; }
   .agenda .compte { line-height: 52px; }
   .agenda-choix { align-items: flex-start; }
   .agenda-menu { justify-content: flex-start; }
+  .js .agenda-menu { left: 0; transform: none; }
   .reponse { margin-top: 48px; padding-top: 40px; }
   .reponse .ornement { display: none; }
   form, .merci { margin: 0; max-width: none; }
