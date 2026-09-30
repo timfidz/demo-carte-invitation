@@ -85,9 +85,12 @@
               <button type="button" id="plus" aria-label="Une personne de plus">+</button>
             </div>
           </div>
-          <label class="champ" for="regime"><span>Régime alimentaire ou allergie <small>(facultatif)</small></span>
-            <input id="regime" name="regime" type="text">
-          </label>
+          <div class="exemples">
+            <p class="exemples-note"><strong>Questions d'exemple.</strong> Dans votre carte, vous choisissez les vôtres.</p>
+            <div class="theme-q"><p class="theme-nom">Repas</p><fieldset class="choix petit" data-q="Cocktail" data-nom="q-cocktail"><legend>Pour le cocktail dînatoire</legend><label><input type="radio" name="q-cocktail" value="Sans restriction"><span>Sans restriction</span></label><label><input type="radio" name="q-cocktail" value="Végétarien"><span>Végétarien</span></label><label><input type="radio" name="q-cocktail" value="Sans gluten"><span>Sans gluten</span></label></fieldset></div>
+            <div class="theme-q"><p class="theme-nom">Programme</p><fieldset class="choix petit" data-q="Visite de l'atelier" data-nom="q-visite"><legend>Participerez-vous à la visite de l'atelier, à 18 h ?</legend><label><input type="radio" name="q-visite" value="Oui"><span>Oui</span></label><label><input type="radio" name="q-visite" value="Non"><span>Non</span></label></fieldset></div>
+            <div class="theme-q"><p class="theme-nom">Accès</p><fieldset class="choix petit" data-q="Parking" data-nom="q-parking"><legend>Avez-vous besoin d'une place de parking ?</legend><label><input type="radio" name="q-parking" value="Oui"><span>Oui</span></label><label><input type="radio" name="q-parking" value="Non"><span>Non</span></label></fieldset></div>
+          </div>
         </div>
         <label class="champ" for="message"><span>Un mot pour l'équipe de l'Atelier Lumen <small>(facultatif)</small></span>
           <textarea id="message" name="message" rows="3"></textarea>

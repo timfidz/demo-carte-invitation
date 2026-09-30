@@ -85,9 +85,12 @@
               <button type="button" id="plus" aria-label="Une personne de plus">+</button>
             </div>
           </div>
-          <label class="champ" for="regime"><span>Régime alimentaire ou allergie <small>(facultatif)</small></span>
-            <input id="regime" name="regime" type="text">
-          </label>
+          <div class="exemples">
+            <p class="exemples-note"><strong>Questions d'exemple.</strong> Dans votre carte, vous choisissez les vôtres.</p>
+            <div class="theme-q"><p class="theme-nom">Repas</p><fieldset class="choix petit" data-q="Menu" data-nom="q-menu"><legend>Votre menu</legend><label><input type="radio" name="q-menu" value="Viande"><span>Viande</span></label><label><input type="radio" name="q-menu" value="Poisson"><span>Poisson</span></label><label><input type="radio" name="q-menu" value="Végétarien"><span>Végétarien</span></label></fieldset><label class="champ" for="q-allergie"><span>Une allergie à signaler ? <small>(facultatif)</small></span><input id="q-allergie" name="q-allergie" type="text" data-q="Allergie" data-nom="q-allergie"></label></div>
+            <div class="theme-q"><p class="theme-nom">Hébergement</p><fieldset class="choix petit" data-q="Chambre sur place" data-nom="q-chambre"><legend>Souhaitez-vous une chambre sur place ?</legend><label><input type="radio" name="q-chambre" value="Oui"><span>Oui</span></label><label><input type="radio" name="q-chambre" value="Non"><span>Non</span></label></fieldset></div>
+            <div class="theme-q"><p class="theme-nom">Ambiance</p><label class="champ" for="q-chanson"><span>La chanson qui vous fera danser <small>(facultatif)</small></span><input id="q-chanson" name="q-chanson" type="text" data-q="Chanson" data-nom="q-chanson"></label></div>
+          </div>
         </div>
         <label class="champ" for="message"><span>Un mot pour Élise et Thomas <small>(facultatif)</small></span>
           <textarea id="message" name="message" rows="3"></textarea>

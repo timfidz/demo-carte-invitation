@@ -89,7 +89,11 @@
     ligne(dl, "Invité", nom)
     ligne(dl, "Réponse", vient ? d.oui : d.non)
     if (vient) ligne(dl, "Personnes", String(nombre))
-    if (vient && f.get("regime").trim()) ligne(dl, "Régime", f.get("regime").trim())
+    // les questions d'exemple : chaque réponse donnée devient une ligne de l'e-mail
+    if (vient) form.querySelectorAll("[data-q]").forEach((q) => {
+      const valeur = (f.get(q.dataset.nom) || "").trim()
+      if (valeur) ligne(dl, q.dataset.q, valeur)
+    })
     if (f.get("message").trim()) ligne(dl, "Message", f.get("message").trim())
     ligne(dl, "Reçue le", new Date().toLocaleString("fr-FR", { dateStyle: "long", timeStyle: "short" }))
 
