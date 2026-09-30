@@ -70,6 +70,10 @@ h2 { font-size: 1.7rem; }
 .programme time { font-weight: 600; color: var(--encre); font-variant-numeric: tabular-nums; }
 
 .agenda { margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.agenda-choix { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.agenda-menu { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.agenda-menu a { display: inline-block; padding: 9px 16px; border: 1px solid var(--filet); border-radius: 999px; background: #fff; color: var(--encre); font-size: .92rem; font-weight: 500; text-decoration: none; }
+.agenda-menu a:hover { border-color: var(--accent); }
 .compte { margin: 0; font: 500 1.15rem "Fraunces", Georgia, serif; color: var(--encre); }
 
 /* ---------- Réponse */
@@ -155,7 +159,10 @@ form .bouton { justify-self: center; margin-top: 4px; }
   .mot { margin: 0; max-width: none; font: 400 1.5rem/1.4 "Fraunces", Georgia, serif; color: var(--encre); }
   .programme { margin-top: 44px; }
   .programme ol { margin-left: 6px; max-width: none; }
-  .agenda { flex-direction: row; align-items: center; gap: 22px; margin-top: 30px; }
+  .agenda { flex-direction: row; align-items: flex-start; gap: 22px; margin-top: 30px; }
+  .agenda .compte { line-height: 52px; }
+  .agenda-choix { align-items: flex-start; }
+  .agenda-menu { justify-content: flex-start; }
   .reponse { margin-top: 48px; padding-top: 40px; }
   .reponse .ornement { display: none; }
   form, .merci { margin: 0; max-width: none; }

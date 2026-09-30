@@ -37,17 +37,12 @@
     $("compte").hidden = false
   }
 
-  // ---- L'agenda : un fichier .ics que le téléphone ou l'ordinateur sait ouvrir
+  // ---- L'agenda : le bouton déplie trois choix (Google, Outlook, fichier .ics) ; sans script, ils restent affichés
+  const menu = $("agenda-menu")
+  menu.hidden = true
   $("agenda").addEventListener("click", () => {
-    const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Carte invitation//FR", "BEGIN:VEVENT",
-      "UID:" + d.debut + "@carte-invitation", "DTSTAMP:" + new Date().toISOString().replace(/[-:]|\.\d{3}/g, ""),
-      "DTSTART:" + d.debut, "DTEND:" + d.fin, "SUMMARY:" + d.evenement, "LOCATION:" + d.lieu.replace(/,/g, "\\,"),
-      "END:VEVENT", "END:VCALENDAR"].join("\r\n")
-    const a = document.createElement("a")
-    a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }))
-    a.download = "invitation.ics"
-    a.click()
-    URL.revokeObjectURL(a.href)
+    menu.hidden = !menu.hidden
+    $("agenda").setAttribute("aria-expanded", String(!menu.hidden))
   })
 
   // ---- Le formulaire

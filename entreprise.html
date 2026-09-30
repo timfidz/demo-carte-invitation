@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/style.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
-<body class="theme-entreprise" data-evenement="Les 20 ans de l'Atelier Lumen" data-debut="20261119T183000" data-fin="20261119T233000" data-jour="2026-11-19" data-lieu="La Halle aux Grains, 3 quai des Arts, 69002 Lyon" data-oui="Oui, je serai là" data-non="Non, je serai absent">
+<body class="theme-entreprise" data-evenement="Les 20 ans de l'Atelier Lumen" data-jour="2026-11-19" data-oui="Oui, je serai là" data-non="Non, je serai absent">
   <p class="ruban">Démonstration : les noms, la date et le lieu sont fictifs.</p>
 
   <section class="accueil" id="accueil" aria-label="Enveloppe">
@@ -53,7 +53,14 @@
 
     <div class="agenda">
       <p class="compte" id="compte" hidden></p>
-      <button type="button" class="bouton clair" id="agenda">Ajouter à mon agenda</button>
+      <div class="agenda-choix">
+        <button type="button" class="bouton clair" id="agenda" aria-expanded="false" aria-controls="agenda-menu">Ajouter à mon agenda</button>
+        <ul class="agenda-menu" id="agenda-menu">
+          <li><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Les%2020%20ans%20de%20l'Atelier%20Lumen&amp;dates=20261119T173000Z/20261119T223000Z&amp;location=La%20Halle%20aux%20Grains%2C%203%20quai%20des%20Arts%2C%2069002%20Lyon" target="_blank" rel="noopener">Google Agenda</a></li>
+          <li><a href="https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=Les%2020%20ans%20de%20l'Atelier%20Lumen&amp;startdt=2026-11-19T17%3A30%3A00Z&amp;enddt=2026-11-19T22%3A30%3A00Z&amp;location=La%20Halle%20aux%20Grains%2C%203%20quai%20des%20Arts%2C%2069002%20Lyon" target="_blank" rel="noopener">Outlook</a></li>
+          <li><a href="invitation-entreprise.ics">Apple ou autre agenda</a></li>
+        </ul>
+      </div>
     </div>
 
     <section class="reponse" id="reponse" aria-labelledby="t-reponse">

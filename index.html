@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="assets/style.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
-<body class="theme-mariage" data-evenement="Mariage d'Élise et Thomas" data-debut="20270612T153000" data-fin="20270613T020000" data-jour="2027-06-12" data-lieu="Domaine des Tilleuls, 12 chemin des Tilleuls, 74000 Annecy" data-oui="Oui, avec joie" data-non="Non, avec regret">
+<body class="theme-mariage" data-evenement="Mariage d'Élise et Thomas" data-jour="2027-06-12" data-oui="Oui, avec joie" data-non="Non, avec regret">
   <p class="ruban">Démonstration : les noms, la date et le lieu sont fictifs.</p>
 
   <section class="accueil" id="accueil" aria-label="Enveloppe">
@@ -53,7 +53,14 @@
 
     <div class="agenda">
       <p class="compte" id="compte" hidden></p>
-      <button type="button" class="bouton clair" id="agenda">Ajouter à mon agenda</button>
+      <div class="agenda-choix">
+        <button type="button" class="bouton clair" id="agenda" aria-expanded="false" aria-controls="agenda-menu">Ajouter à mon agenda</button>
+        <ul class="agenda-menu" id="agenda-menu">
+          <li><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Mariage%20d'%C3%89lise%20et%20Thomas&amp;dates=20270612T133000Z/20270613T000000Z&amp;location=Domaine%20des%20Tilleuls%2C%2012%20chemin%20des%20Tilleuls%2C%2074000%20Annecy" target="_blank" rel="noopener">Google Agenda</a></li>
+          <li><a href="https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&amp;rru=addevent&amp;subject=Mariage%20d'%C3%89lise%20et%20Thomas&amp;startdt=2027-06-12T13%3A30%3A00Z&amp;enddt=2027-06-13T00%3A00%3A00Z&amp;location=Domaine%20des%20Tilleuls%2C%2012%20chemin%20des%20Tilleuls%2C%2074000%20Annecy" target="_blank" rel="noopener">Outlook</a></li>
+          <li><a href="invitation.ics">Apple ou autre agenda</a></li>
+        </ul>
+      </div>
     </div>
 
     <section class="reponse" id="reponse" aria-labelledby="t-reponse">
