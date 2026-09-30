@@ -117,11 +117,55 @@ form .bouton { justify-self: center; margin-top: 4px; }
 
 @keyframes apparait { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
+.entete-dedans .ornement:last-child { display: none; }
+
 @media (min-width: 680px) {
   .carte { padding: 56px 56px 48px; margin-top: 40px; }
-  .infos { grid-template-columns: repeat(3, 1fr); }
-  .infos > div { padding: 14px 14px; }
+  .infos > div { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: baseline; padding: 16px 20px; }
+  .infos dt { margin: 0; }
   .choix { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Ordinateur : la carte à gauche, qui reste à l'écran ; les détails et la réponse à droite */
+@media (min-width: 980px) {
+  .theme-mariage { --panneau: #3C4D39; --sur-panneau: #FBF8F1; --or-clair: #D9BD86; }
+  .theme-entreprise { --panneau: #1B2B47; --sur-panneau: #FAF7F2; --or-clair: #E0935F; }
+
+  .carte { width: min(1120px, 100% - 64px); padding: 0; grid-template-columns: 5fr 6fr; text-align: left; }
+  .carte, .js.ouverte .carte { display: grid; }
+  .js .carte { display: none; }
+  .pied { width: min(1120px, 100% - 64px); }
+
+  .entete { border-radius: 18px 0 0 18px; color: var(--sur-panneau); background:
+    radial-gradient(circle at 18% 12%, rgba(255, 255, 255, .10), transparent 46%),
+    radial-gradient(circle at 88% 92%, rgba(255, 255, 255, .07), transparent 42%),
+    var(--panneau); }
+  .entete-dedans { position: sticky; top: 0; height: 100vh; max-height: 860px; min-height: 560px; padding: 56px 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .entete-dedans::before { content: ""; position: absolute; inset: 26px; border: 1px solid color-mix(in srgb, var(--or-clair) 55%, transparent); border-radius: 10px; pointer-events: none; }
+  .entete .ornement { color: var(--or-clair); width: 190px; margin-bottom: 26px; }
+  .entete-dedans .ornement:last-child { display: block; margin: 30px auto 0; }
+  .entete .surtitre { color: color-mix(in srgb, var(--sur-panneau) 78%, transparent); letter-spacing: .26em; margin-bottom: 14px; }
+  .entete h1 { color: var(--sur-panneau); font-size: clamp(3.4rem, 5.6vw, 5rem); }
+  .entete h1 .et { display: block; color: var(--or-clair); font-size: .7em; line-height: 1.1; }
+  .theme-entreprise .entete h1 { color: var(--or-clair); font-size: clamp(5rem, 9vw, 7.5rem); }
+  .entete .quand { color: var(--sur-panneau); font-size: 1.45rem; margin-top: 28px; }
+  .entete .ou { color: color-mix(in srgb, var(--sur-panneau) 80%, transparent); }
+
+  .contenu { padding: 60px 60px 52px; }
+  .mot { margin: 0; max-width: none; font: 400 1.5rem/1.4 "Fraunces", Georgia, serif; color: var(--encre); }
+  .programme { margin-top: 44px; }
+  .programme ol { margin-left: 6px; max-width: none; }
+  .agenda { flex-direction: row; align-items: center; gap: 22px; margin-top: 30px; }
+  .reponse { margin-top: 48px; padding-top: 40px; }
+  .reponse .ornement { display: none; }
+  form, .merci { margin: 0; max-width: none; }
+  form .bouton { justify-self: start; }
+  .signature { text-align: right; }
+
+  .enveloppe { width: 420px; margin-top: 110px; }
+  .enveloppe .lettre strong { font-size: 2rem; }
+  .enveloppe .sceau { width: 70px; height: 70px; margin: -35px 0 0 -35px; font-size: 1.2rem; }
+  .destinataire { font-size: 1.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
