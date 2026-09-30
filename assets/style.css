@@ -1,0 +1,129 @@
+/* Carte d'invitation : pensée d'abord pour le téléphone, là où l'invité ouvre le lien */
+@font-face { font-family: "Fraunces"; src: url("fonts/fraunces.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/inter.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+.theme-mariage { --fond: #EFE9DD; --papier: #FBF8F1; --encre: #2F3A2E; --texte: #4A5248; --accent: #6F8564; --accent-fonce: #4F6347; --or: #B08D4C; --filet: #DDD3BF; --sur-accent: #fff; }
+.theme-entreprise { --fond: #121B2B; --papier: #FAF7F2; --encre: #16233A; --texte: #465063; --accent: #B86B3C; --accent-fonce: #96522A; --or: #B86B3C; --filet: #E3DACB; --sur-accent: #fff; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-height: 100vh; font-family: "Inter", system-ui, sans-serif; font-size: 17px; line-height: 1.6; color: var(--texte); background: var(--fond); display: flex; flex-direction: column; align-items: center; }
+h1, h2, h3 { font-family: "Fraunces", Georgia, serif; color: var(--encre); font-weight: 500; line-height: 1.15; margin: 0; }
+[hidden] { display: none !important; }
+
+.ruban { margin: 0; width: 100%; padding: 8px 16px; text-align: center; font-size: .82rem; background: var(--encre); color: #fff; }
+
+/* ---------- Bouton */
+.bouton { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border: 0; border-radius: 999px; background: var(--accent); color: var(--sur-accent); font: 600 1rem "Inter", system-ui, sans-serif; cursor: pointer; transition: background .2s, transform .2s; }
+.bouton:hover { background: var(--accent-fonce); }
+.bouton:active { transform: scale(.98); }
+.bouton.clair { background: transparent; color: var(--accent-fonce); box-shadow: inset 0 0 0 1.5px var(--accent); }
+.bouton.clair:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+:focus-visible { outline: 3px solid var(--or); outline-offset: 3px; }
+.lien { background: none; border: 0; padding: 0; font: inherit; color: var(--accent-fonce); text-decoration: underline; cursor: pointer; }
+
+/* ---------- Enveloppe (affichée seulement si le script tourne) */
+.accueil { display: none; }
+.js .accueil { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; flex: 1; width: 100%; padding: 40px 20px 56px; }
+.js .carte, .js .pied { display: none; }
+.js.ouverte .accueil { display: none; }
+.js.ouverte .carte { display: block; animation: apparait .7s ease both; }
+.js.ouverte .pied { display: block; }
+
+.enveloppe { position: relative; width: min(320px, 84vw); aspect-ratio: 3 / 2; margin-top: 70px; perspective: 900px; filter: drop-shadow(0 16px 22px rgba(0, 0, 0, .22)); }
+.enveloppe .poche { position: absolute; inset: 0; background: linear-gradient(180deg, #fff, var(--papier)); clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%); z-index: 3; }
+.enveloppe::before { content: ""; position: absolute; inset: 0; background: color-mix(in srgb, var(--papier) 82%, var(--encre)); z-index: 1; }
+.enveloppe .rabat { position: absolute; inset: 0 0 auto 0; height: 58%; background: color-mix(in srgb, var(--papier) 92%, var(--encre)); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top; transition: transform .6s ease, z-index 0s .3s; z-index: 4; filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .12)); }
+.enveloppe .sceau { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px; border-radius: 50%; display: grid; place-items: center; background: var(--or); color: #fff; font: 600 1rem "Fraunces", Georgia, serif; box-shadow: 0 3px 8px rgba(0, 0, 0, .25), inset 0 0 0 3px rgba(255, 255, 255, .25); z-index: 5; transition: opacity .3s, transform .3s; }
+.enveloppe .lettre { position: absolute; left: 7%; right: 7%; top: 8%; height: 84%; padding: 16px 10px; border-radius: 6px; background: #fff; text-align: center; display: flex; flex-direction: column; gap: 4px; align-items: center; z-index: 2; transition: transform .8s ease .45s; box-shadow: 0 2px 10px rgba(0, 0, 0, .1); }
+.enveloppe .lettre span { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-fonce); }
+.enveloppe .lettre strong { font: 500 1.5rem "Fraunces", Georgia, serif; color: var(--encre); }
+.enveloppe.ouvre .rabat { transform: rotateX(180deg); z-index: 1; }
+.enveloppe.ouvre .sceau { opacity: 0; transform: scale(.6); }
+.enveloppe.ouvre .lettre { transform: translateY(-46%); }
+.destinataire { margin: 0; font: 400 1.25rem "Fraunces", Georgia, serif; color: var(--papier); text-align: center; }
+.theme-mariage .destinataire { color: var(--encre); }
+
+/* ---------- Carte */
+.carte { width: min(640px, 100% - 24px); margin: 24px auto 0; padding: 40px 22px 36px; background: var(--papier); border-radius: 18px; box-shadow: 0 20px 50px rgba(0, 0, 0, .18); text-align: center; }
+.ornement { width: 170px; height: auto; color: var(--or); margin: 0 auto 10px; display: block; }
+.surtitre { margin: 0 0 6px; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-fonce); }
+h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); letter-spacing: -.01em; }
+h1 .et { color: var(--or); font-style: italic; font-weight: 400; }
+.theme-entreprise h1 { font-size: clamp(4rem, 20vw, 6.5rem); color: var(--accent); line-height: 1; }
+.quand { margin: 18px 0 0; font: 500 1.3rem "Fraunces", Georgia, serif; color: var(--encre); }
+.ou { margin: 2px 0 0; }
+.mot { margin: 28px auto 0; max-width: 30em; font-size: 1.08rem; }
+.mot strong { color: var(--encre); }
+
+.infos { display: grid; gap: 12px; margin: 30px 0 0; text-align: left; }
+.infos > div { padding: 16px 18px; border: 1px solid var(--filet); border-radius: 14px; background: #fff; }
+.infos dt { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-fonce); margin-bottom: 4px; }
+.infos dd { margin: 0; color: var(--encre); font-size: .97rem; }
+
+.programme { margin-top: 36px; }
+h2 { font-size: 1.7rem; }
+.programme ol { list-style: none; margin: 18px auto 0; padding: 0; max-width: 360px; text-align: left; }
+.programme li { position: relative; display: grid; grid-template-columns: 74px 1fr; gap: 14px; padding: 0 0 18px 22px; border-left: 1.5px solid var(--filet); }
+.programme li:last-child { padding-bottom: 0; border-left-color: transparent; }
+.programme li::before { content: ""; position: absolute; left: -6.5px; top: 7px; width: 11px; height: 11px; border-radius: 50%; background: var(--or); box-shadow: 0 0 0 4px var(--papier); }
+.programme time { font-weight: 600; color: var(--encre); font-variant-numeric: tabular-nums; }
+
+.agenda { margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.compte { margin: 0; font: 500 1.15rem "Fraunces", Georgia, serif; color: var(--encre); }
+
+/* ---------- Réponse */
+.reponse { margin-top: 44px; padding-top: 34px; border-top: 1px solid var(--filet); }
+.limite { margin: 6px 0 22px; }
+form { display: grid; gap: 18px; text-align: left; max-width: 440px; margin: 0 auto; }
+.champ { display: grid; gap: 6px; font-weight: 500; color: var(--encre); }
+.champ small { font-weight: 400; color: var(--texte); }
+.champ > span { display: block; }
+input[type="text"], textarea { width: 100%; padding: 13px 14px; border: 1.5px solid var(--filet); border-radius: 12px; background: #fff; font: inherit; color: var(--encre); }
+input[type="text"]:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+textarea { resize: vertical; }
+.choix { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; }
+.choix legend { padding: 0; margin-bottom: 8px; font-weight: 500; color: var(--encre); }
+.choix label { position: relative; display: flex; cursor: pointer; }
+.choix input { position: absolute; opacity: 0; inset: 0; }
+.choix span { flex: 1; padding: 14px 16px; border: 1.5px solid var(--filet); border-radius: 12px; background: #fff; color: var(--encre); transition: border-color .2s, background .2s; }
+.choix input:checked + span { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, #fff); font-weight: 600; }
+.choix input:focus-visible + span { outline: 3px solid var(--or); outline-offset: 2px; }
+#si-oui { display: grid; gap: 18px; }
+.compteur { display: inline-flex; align-items: center; gap: 6px; }
+.compteur button { width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--filet); background: #fff; font-size: 1.4rem; line-height: 1; color: var(--encre); cursor: pointer; }
+.compteur button:hover { border-color: var(--accent); }
+.compteur output { min-width: 48px; text-align: center; font: 500 1.5rem "Fraunces", Georgia, serif; color: var(--encre); }
+.erreur { margin: 0; padding: 12px 14px; border-radius: 12px; background: #FBEAE5; color: #8A2E1B; font-weight: 500; }
+form .bouton { justify-self: center; margin-top: 4px; }
+
+.merci { max-width: 480px; margin: 0 auto; outline: none; }
+.merci h3 { font-size: 1.5rem; }
+.merci > p { margin: 8px 0 10px; }
+.apercu { margin-top: 28px; text-align: left; }
+.apercu-note { margin: 0 0 8px; font-size: .85rem; color: var(--texte); }
+.mail { border: 1px dashed var(--accent); border-radius: 14px; padding: 16px 18px; background: #fff; font-size: .95rem; }
+.mail-objet { margin: 0 0 10px; font-weight: 600; color: var(--encre); }
+.mail dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; }
+.mail dt { color: var(--texte); }
+.mail dd { margin: 0; color: var(--encre); overflow-wrap: anywhere; }
+
+.signature { margin: 40px 0 0; font: italic 400 1.3rem "Fraunces", Georgia, serif; color: var(--encre); }
+
+.pied { width: min(640px, 100% - 24px); margin: 22px auto 40px; text-align: center; font-size: .9rem; color: var(--texte); }
+.theme-entreprise .pied { color: #C9CFDB; }
+.pied p { margin: 4px 0; }
+.pied a { color: inherit; font-weight: 600; }
+
+@keyframes apparait { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+@media (min-width: 680px) {
+  .carte { padding: 56px 56px 48px; margin-top: 40px; }
+  .infos { grid-template-columns: repeat(3, 1fr); }
+  .infos > div { padding: 14px 14px; }
+  .choix { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}

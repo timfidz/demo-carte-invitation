@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Les 20 ans de l'Atelier Lumen · 19 novembre 2026</title>
+  <meta name="description" content="Invitation : Les 20 ans de l'Atelier Lumen, jeudi 19 novembre 2026, La Halle aux Grains. Merci de répondre avant le 30 octobre 2026.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Vous êtes invité : Les 20 ans de l'Atelier Lumen">
+  <meta property="og:description" content="Jeudi 19 novembre 2026, La Halle aux Grains. Ouvrez la carte et répondez en une minute.">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="theme-entreprise" data-evenement="Les 20 ans de l'Atelier Lumen" data-debut="20261119T183000" data-fin="20261119T233000" data-jour="2026-11-19" data-lieu="La Halle aux Grains, 3 quai des Arts, 69002 Lyon" data-oui="Oui, je serai là" data-non="Non, je serai absent">
+  <p class="ruban">Démonstration : les noms, la date et le lieu sont fictifs.</p>
+
+  <section class="accueil" id="accueil" aria-label="Enveloppe">
+    <div class="enveloppe" id="enveloppe">
+      <div class="lettre"><span>L'Atelier Lumen fête ses</span><strong>20 ans</strong></div>
+      <div class="poche"></div>
+      <div class="rabat"></div>
+      <div class="sceau">20</div>
+    </div>
+    <p class="destinataire">Pour <strong data-invite>vous</strong></p>
+    <button type="button" class="bouton" id="ouvrir">Ouvrir l'invitation</button>
+  </section>
+
+  <main class="carte" id="carte">
+    <header class="entete">
+      <svg class="ornement" viewBox="0 0 240 60" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 30 H96 M144 30 H220"/><path d="M120 14 l16 16 l-16 16 l-16 -16Z"/><path d="M120 22 l8 8 l-8 8 l-8 -8Z" fill="currentColor" stroke="none"/></g></svg>
+      <p class="surtitre">L'Atelier Lumen fête ses</p>
+      <h1>20 ans</h1>
+      <p class="quand">Jeudi 19 novembre 2026</p>
+      <p class="ou">La Halle aux Grains</p>
+    </header>
+
+    <p class="mot"><span class="avec-nom" hidden><strong data-invite></strong>, toute l'équipe de l'Atelier Lumen a le plaisir de vous inviter à la soirée de ses 20 ans.</span><span class="sans-nom">Toute l'équipe de l'Atelier Lumen a le plaisir de vous inviter à la soirée de ses 20 ans.</span></p>
+
+    <dl class="infos">
+      <div><dt>Quand</dt><dd>Jeudi 19 novembre&nbsp;2026<br>à partir de 18&nbsp;h&nbsp;30</dd></div>
+      <div><dt>Où</dt><dd>La Halle aux Grains<br>3 quai des Arts, 69002 Lyon</dd></div>
+      <div><dt>Accès</dt><dd>Parking des Arts à 200 m, métro Bellecour</dd></div>
+    </dl>
+
+    <section class="programme" aria-labelledby="t-programme">
+      <h2 id="t-programme">Le programme</h2>
+      <ol><li><time>18 h 30</time><span>Accueil et vestiaire</span></li><li><time>19 h 15</time><span>Mot des fondateurs</span></li><li><time>19 h 45</time><span>Cocktail dînatoire</span></li><li><time>21 h 30</time><span>Concert</span></li></ol>
+    </section>
+
+    <div class="agenda">
+      <p class="compte" id="compte" hidden></p>
+      <button type="button" class="bouton clair" id="agenda">Ajouter à mon agenda</button>
+    </div>
+
+    <section class="reponse" id="reponse" aria-labelledby="t-reponse">
+      <svg class="ornement" viewBox="0 0 240 60" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M20 30 H96 M144 30 H220"/><path d="M120 14 l16 16 l-16 16 l-16 -16Z"/><path d="M120 22 l8 8 l-8 8 l-8 -8Z" fill="currentColor" stroke="none"/></g></svg>
+      <h2 id="t-reponse">Votre réponse</h2>
+      <p class="limite">Merci de répondre avant le 30 octobre 2026.</p>
+      <form id="formulaire" novalidate>
+        <label class="champ" for="nom"><span>Votre prénom et votre nom</span>
+          <input id="nom" name="nom" type="text" autocomplete="name" required>
+        </label>
+        <fieldset class="choix">
+          <legend>Serez-vous présent ?</legend>
+          <label><input type="radio" name="presence" value="oui" required><span>Oui, je serai là</span></label>
+          <label><input type="radio" name="presence" value="non"><span>Non, je serai absent</span></label>
+        </fieldset>
+        <div id="si-oui" hidden>
+          <div class="champ">
+            <span id="l-nombre">Nombre de personnes, vous compris</span>
+            <div class="compteur" role="group" aria-labelledby="l-nombre">
+              <button type="button" id="moins" aria-label="Une personne de moins">−</button>
+              <output id="nombre" aria-live="polite">1</output>
+              <button type="button" id="plus" aria-label="Une personne de plus">+</button>
+            </div>
+          </div>
+          <label class="champ" for="regime"><span>Régime alimentaire ou allergie <small>(facultatif)</small></span>
+            <input id="regime" name="regime" type="text">
+          </label>
+        </div>
+        <label class="champ" for="message"><span>Un mot pour l'équipe de l'Atelier Lumen <small>(facultatif)</small></span>
+          <textarea id="message" name="message" rows="3"></textarea>
+        </label>
+        <p class="erreur" id="erreur" role="alert" hidden></p>
+        <button type="submit" class="bouton">Envoyer ma réponse</button>
+      </form>
+
+      <div class="merci" id="merci" hidden tabindex="-1">
+        <h3 id="merci-titre"></h3>
+        <p id="merci-texte"></p>
+        <button type="button" class="lien" id="modifier">Modifier ma réponse</button>
+        <aside class="apercu">
+          <p class="apercu-note">Démonstration : voici l'e-mail que l'organisateur reçoit à chaque réponse.</p>
+          <div class="mail">
+            <p class="mail-objet" id="mail-objet"></p>
+            <dl id="mail-corps"></dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <p class="signature">L'équipe de l'Atelier Lumen</p>
+  </main>
+
+  <footer class="pied">
+    <p>Une carte, un lien. Chaque invité peut avoir le sien : <a href="entreprise.html?invite=Camille%20Martin">voir la carte de Camille Martin</a>.</p>
+    <p>Autre modèle : <a href="index.html">mariage</a>.</p>
+  </footer>
+  <script src="assets/carte.js"></script>
+</body>
+</html>
